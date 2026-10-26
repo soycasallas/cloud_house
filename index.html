@@ -1,96 +1,146 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#09070e">
-  <meta name="description" content="Cloud House — información general de la marca.">
-  <title>Cloud House | Información</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08070b">
+  <title>Cloud House | Sitio oficial</title>
   <style>
-    :root { color-scheme: dark; --bg:#09070e; --panel:#120e1b; --purple:#9b5cff; --muted:#b9b1c8; --line:#2b203b; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body {
-      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
-      color:#f7f2ff; background:
-      radial-gradient(ellipse at 80% 5%, rgba(126,52,220,.22), transparent 36%),
-      radial-gradient(ellipse at 15% 55%, rgba(76,35,123,.15), transparent 35%), var(--bg);
-      min-height:100vh;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    a { color:inherit; }
-    .wrap { width:min(1080px, calc(100% - 40px)); margin:auto; }
-    header { display:flex; align-items:center; justify-content:space-between; padding:25px 0; border-bottom:1px solid rgba(255,255,255,.08); }
-    .brand { font-weight:850; letter-spacing:.17em; font-size:1rem; }
-    .brand span { color:var(--purple); }
-    .tag { color:var(--muted); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; }
-    .hero { padding:95px 0 78px; text-align:center; position:relative; overflow:hidden; }
-    .eyebrow { color:#c6a4ff; text-transform:uppercase; letter-spacing:.22em; font-size:.76rem; font-weight:700; }
-    h1 { font-size:clamp(3rem, 10vw, 6.7rem); line-height:.98; letter-spacing:-.065em; margin:20px 0; }
-    h1 .glow { color:#c5a0ff; text-shadow:0 0 35px rgba(155,92,255,.3); }
-    .intro { color:var(--muted); font-size:clamp(1rem, 2.5vw, 1.18rem); line-height:1.8; max-width:650px; margin:0 auto; }
-    .orb { width:190px; height:190px; border-radius:50%; position:absolute; left:calc(50% - 95px); top:70px; background:rgba(126,52,220,.18); filter:blur(55px); pointer-events:none; }
-    .hero > *:not(.orb) { position:relative; }
-    .rule { width:70px; height:3px; border-radius:10px; margin:28px auto; background:linear-gradient(90deg, transparent, var(--purple), transparent); }
-    .section { padding:28px 0 76px; }
-    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    .card { background:linear-gradient(145deg, rgba(24,17,37,.95), rgba(13,10,19,.92)); border:1px solid var(--line); border-radius:20px; padding:25px; min-height:180px; }
-    .num { color:var(--purple); font-size:.78rem; letter-spacing:.15em; font-weight:800; }
-    h2 { font-size:1.45rem; margin:13px 0 9px; letter-spacing:-.025em; }
-    .card p, .legal p { color:var(--muted); line-height:1.75; margin:0; font-size:.94rem; }
-    .legal { border:1px solid var(--line); background:rgba(18,14,27,.72); padding:26px; border-radius:20px; margin-bottom:65px; }
-    .legal h2 { margin-top:0; }
-    footer { border-top:1px solid rgba(255,255,255,.08); padding:23px 0 30px; color:#8f859e; font-size:.8rem; }
-    .footer-inner { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
-    @media (max-width:700px) { .grid { grid-template-columns:1fr; } .hero { padding:75px 0 60px; } .card { min-height:0; } .tag { display:none; } }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #f7f4fa;
+      background:
+        radial-gradient(ellipse at top, #29123c 0%, #100b17 42%, #07070a 78%);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 24px 7%;
+      border-bottom: 1px solid #ffffff18;
+      text-align: center;
+    }
+
+    .brand {
+      color: #d6a5ff;
+      font-size: 14px;
+      letter-spacing: 5px;
+      font-weight: bold;
+    }
+
+    main {
+      width: min(900px, 90%);
+      margin: auto;
+      padding: 65px 0;
+      text-align: center;
+    }
+
+    .logo {
+      display: block;
+      width: min(230px, 65%);
+      max-height: 230px;
+      object-fit: contain;
+      margin: 0 auto 30px;
+      filter: drop-shadow(0 0 25px #a855f755);
+    }
+
+    h1 {
+      font-size: clamp(38px, 8vw, 68px);
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    h1 span {
+      color: #c084fc;
+    }
+
+    .intro {
+      max-width: 620px;
+      margin: 0 auto;
+      color: #c9c2d2;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .line {
+      width: 75px;
+      height: 3px;
+      background: #b66aff;
+      margin: 30px auto;
+      border-radius: 5px;
+    }
+
+    .info {
+      margin: 35px auto 0;
+      padding: 25px;
+      max-width: 650px;
+      border: 1px solid #b66aff55;
+      border-radius: 18px;
+      background: #ffffff08;
+    }
+
+    .info h2 {
+      color: #d6a5ff;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .info p {
+      color: #c9c2d2;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 24px 6%;
+      text-align: center;
+      border-top: 1px solid #ffffff18;
+      color: #8d8499;
+      font-size: 12px;
+      line-height: 1.8;
+    }
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <div class="brand">CLOUD <span>HOUSE</span></div>
-    <div class="tag">Información de la marca</div>
+  <header>
+    <div class="brand">C L O U D &nbsp; H O U S E</div>
   </header>
 
   <main>
-    <section class="hero wrap">
-      <div class="orb"></div>
-      <div class="eyebrow">Identidad · Información · Responsabilidad</div>
-      <h1>CLOUD<br><span class="glow">HOUSE</span></h1>
-      <div class="rule"></div>
-      <p class="intro">Un espacio digital para consultar información general de la marca y sus canales oficiales. Diseño oscuro, detalles violeta y una experiencia sencilla desde cualquier pantalla.</p>
-    </section>
+    <img class="logo" src="logo.jpeg" alt="Logo de Cloud House">
 
-    <section class="section wrap" aria-label="Información de la marca">
-      <div class="grid">
-        <article class="card">
-          <div class="num">01 / MARCA</div>
-          <h2>Quiénes somos</h2>
-          <p>Cloud House es una marca en desarrollo. Aquí se podrá consultar información institucional verificada y novedades generales permitidas por la normativa aplicable.</p>
-        </article>
-        <article class="card">
-          <div class="num">02 / INFORMACIÓN</div>
-          <h2>Información responsable</h2>
-          <p>Los productos relacionados con nicotina y vapeo pueden implicar riesgos para la salud. Esta página no ofrece recomendaciones de consumo ni afirma que estos productos sean inocuos.</p>
-        </article>
-        <article class="card">
-          <div class="num">03 / CONTACTO</div>
-          <h2>Canales oficiales</h2>
-          <p>Los datos de contacto se añadirán cuando estén confirmados y se haya verificado qué comunicaciones son legalmente admisibles.</p>
-        </article>
-      </div>
-    </section>
+    <h1>CLOUD <span>HOUSE</span></h1>
 
-    <section class="wrap legal">
-      <h2>Nota legal</h2>
-      <p>Este sitio es una maqueta informativa. No contiene catálogo comercial, precios, promociones, pedidos ni enlaces de compra. Antes de añadir contenido sobre productos regulados, se debe revisar la normativa colombiana vigente y obtener asesoría jurídica cuando sea necesario.</p>
+    <div class="line"></div>
+
+    <p class="intro">
+      Bienvenido al espacio digital de Cloud House.
+      Conoce nuestra identidad y mantente al tanto de la información
+      general de la marca.
+    </p>
+
+    <section class="info">
+      <h2>Información y responsabilidad</h2>
+      <p>
+        Los productos relacionados con vapeo contienen riesgos para la salud
+        y pueden contener nicotina, una sustancia adictiva.
+        Este sitio es informativo y no está dirigido a menores de edad.
+        Consulta siempre las normas sanitarias aplicables en Colombia.
+      </p>
     </section>
   </main>
 
   <footer>
-    <div class="wrap footer-inner">
-      <span>© <span id="year"></span> Cloud House</span>
-      <span>Maqueta web informativa · Diseño adaptable</span>
-    </div>
+    CLOUD HOUSE · Sitio informativo<br>
+    © 2026 Cloud House
   </footer>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
