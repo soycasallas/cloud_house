@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#08070b">
-  <title>Cloud House | Sitio oficial</title>
+  <meta name="theme-color" content="#09070d">
+  <title>Cloud House | Gorras</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -14,133 +15,239 @@
     }
 
     body {
-      min-height: 100vh;
+      background: #09070d;
+      color: #ffffff;
       font-family: Arial, Helvetica, sans-serif;
-      color: #f7f4fa;
-      background:
-        radial-gradient(ellipse at top, #29123c 0%, #100b17 42%, #07070a 78%);
-      display: flex;
-      flex-direction: column;
+      line-height: 1.6;
     }
 
     header {
-      padding: 24px 7%;
-      border-bottom: 1px solid #ffffff18;
       text-align: center;
+      padding: 30px 16px;
+      background: linear-gradient(135deg, #100b19, #241039, #0b0810);
+      border-bottom: 1px solid #6d28d9;
     }
 
     .brand {
-      color: #d6a5ff;
-      font-size: 14px;
-      letter-spacing: 5px;
-      font-weight: bold;
+      color: #d8b4fe;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 4px;
     }
 
-    main {
-      width: min(900px, 90%);
-      margin: auto;
-      padding: 65px 0;
+    header p {
+      color: #d4c8e2;
+      margin-top: 6px;
+    }
+
+    .hero {
       text-align: center;
+      padding: 40px 20px 25px;
     }
 
-    .logo {
-      display: block;
-      width: min(230px, 65%);
-      max-height: 230px;
+    .hero img {
+      width: 145px;
+      height: 145px;
       object-fit: contain;
-      margin: 0 auto 30px;
-      filter: drop-shadow(0 0 25px #a855f755);
+      margin-bottom: 15px;
     }
 
-    h1 {
-      font-size: clamp(38px, 8vw, 68px);
-      letter-spacing: 2px;
-      margin-bottom: 18px;
+    .hero h1 {
+      font-size: clamp(30px, 6vw, 48px);
+      color: #d8b4fe;
+      margin-bottom: 10px;
     }
 
-    h1 span {
-      color: #c084fc;
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      color: #c8c1d0;
+    }
+
+    .catalog {
+      max-width: 1050px;
+      margin: auto;
+      padding: 25px 18px 50px;
+    }
+
+    .catalog h2 {
+      text-align: center;
+      color: #d8b4fe;
+      font-size: 30px;
+      margin-bottom: 8px;
     }
 
     .intro {
-      max-width: 620px;
-      margin: 0 auto;
-      color: #c9c2d2;
-      line-height: 1.8;
-      font-size: 16px;
+      text-align: center;
+      color: #bdb4c8;
+      margin-bottom: 30px;
     }
 
-    .line {
-      width: 75px;
-      height: 3px;
-      background: #b66aff;
-      margin: 30px auto;
-      border-radius: 5px;
+    .caps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
     }
 
-    .info {
-      margin: 35px auto 0;
-      padding: 25px;
-      max-width: 650px;
-      border: 1px solid #b66aff55;
+    .cap-card {
+      background: #15111c;
+      border: 1px solid #593080;
       border-radius: 18px;
-      background: #ffffff08;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 8px 25px #00000055;
+      transition: transform 0.2s, border-color 0.2s;
     }
 
-    .info h2 {
-      color: #d6a5ff;
-      font-size: 20px;
-      margin-bottom: 12px;
+    .cap-card:hover {
+      transform: translateY(-4px);
+      border-color: #c084fc;
     }
 
-    .info p {
-      color: #c9c2d2;
-      line-height: 1.8;
+    .cap-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #211a2b;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .cap-card h3 {
+      color: #d8b4fe;
+      font-size: 22px;
+      margin: 16px 0 10px;
+    }
+
+    .cap-card p {
+      color: #d4cedc;
+      margin: 7px 0;
+    }
+
+    .cap-price {
+      font-size: 23px;
+      font-weight: bold;
+      color: #c084fc !important;
+      margin-top: 12px !important;
+    }
+
+    .stock {
+      display: inline-block;
+      background: #28183a;
+      color: #e9d5ff;
+      border-radius: 20px;
+      padding: 5px 12px;
+      margin-top: 8px;
       font-size: 14px;
     }
 
-    footer {
-      padding: 24px 6%;
+    .notice {
+      max-width: 750px;
+      margin: 0 auto 45px;
+      padding: 20px;
       text-align: center;
-      border-top: 1px solid #ffffff18;
-      color: #8d8499;
-      font-size: 12px;
-      line-height: 1.8;
+      color: #c8c1d0;
+      border-top: 1px solid #382448;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      border-top: 1px solid #382448;
+      color: #a99bb8;
+      font-size: 13px;
+    }
+
+    @media (max-width: 500px) {
+      .brand {
+        font-size: 27px;
+      }
+
+      .caps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cap-card {
+        max-width: 380px;
+        width: 100%;
+        margin: auto;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <header>
-    <div class="brand">C L O U D &nbsp; H O U S E</div>
+    <div class="brand">CLOUD HOUSE</div>
+    <p>Estilo que habla por ti.</p>
   </header>
 
   <main>
-    <img class="logo" src="logo.jpeg" alt="Logo de Cloud House">
+    <section class="hero">
+      <img src="logo.jpeg" alt="Logo de Cloud House"
+           onerror="this.style.display='none'">
 
-    <h1>CLOUD <span>HOUSE</span></h1>
+      <h1>Tu estilo, tu esencia.</h1>
+      <p>Descubre nuestra colección de gorras y encuentra el modelo que va contigo.</p>
+    </section>
 
-    <div class="line"></div>
+    <section class="catalog">
+      <h2>Nuestra colección</h2>
+      <p class="intro">Explora nuestros modelos disponibles.</p>
 
-    <p class="intro">
-      Bienvenido al espacio digital de Cloud House.
-      Conoce nuestra identidad y mantente al tanto de la información
-      general de la marca.
-    </p>
+      <div class="caps-grid">
 
-    <section class="info">
-      <h2>Información y responsabilidad</h2>
-      <p>
-        Los productos relacionados con vapeo contienen riesgos para la salud
-        y pueden contener nicotina, una sustancia adictiva.
-        Este sitio es informativo y no está dirigido a menores de edad.
-        Consulta siempre las normas sanitarias aplicables en Colombia.
-      </p>
+        <!-- GORRA LOST ANGEL -->
+        <article class="cap-card">
+          <img class="cap-photo"
+               src="lost-angel.jpg"
+               alt="Gorra modelo Lost Angel"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=LOST+ANGEL'">
+
+          <h3>LOST ANGEL</h3>
+          <p>Color: <strong>Por definir</strong></p>
+          <p class="cap-price">$0 COP</p>
+          <span class="stock">Existencias: 0</span>
+        </article>
+
+        <!-- GORRA IJOY -->
+        <article class="cap-card">
+          <img class="cap-photo"
+               src="ijoy.jpg"
+               alt="Gorra modelo IJOY"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=IJOY'">
+
+          <h3>IJOY</h3>
+          <p>Color: <strong>Por definir</strong></p>
+          <p class="cap-price">$0 COP</p>
+          <span class="stock">Existencias: 0</span>
+        </article>
+
+        <!-- GORRA NORTH -->
+        <article class="cap-card">
+          <img class="cap-photo"
+               src="north.jpg"
+               alt="Gorra modelo North"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=NORTH'">
+
+          <h3>NORTH</h3>
+          <p>Color: <strong>Por definir</strong></p>
+          <p class="cap-price">$0 COP</p>
+          <span class="stock">Existencias: 0</span>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="notice">
+      <p>Los modelos, colores, precios y existencias se actualizarán según la disponibilidad.</p>
     </section>
   </main>
 
   <footer>
-    CLOUD HOUSE · Sitio informativo<br>
-    © 2026 Cloud House
+    © 2026 Cloud House. Todos los derechos reservados.
   </footer>
+
 </body>
 </html>
