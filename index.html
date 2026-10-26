@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#09070d">
-  <title>Cloud House | Gorras</title>
+  <title>Cloud House | Inventario privado</title>
 
   <style>
     * {
@@ -16,7 +16,7 @@
 
     body {
       background: #09070d;
-      color: #ffffff;
+      color: #fff;
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
     }
@@ -42,30 +42,38 @@
 
     .hero {
       text-align: center;
-      padding: 40px 20px 25px;
+      padding: 35px 20px 25px;
     }
 
     .hero img {
-      width: 145px;
-      height: 145px;
+      width: 135px;
+      height: 135px;
       object-fit: contain;
-      margin-bottom: 15px;
-    }
-
-    .hero h1 {
-      font-size: clamp(30px, 6vw, 48px);
-      color: #d8b4fe;
       margin-bottom: 10px;
     }
 
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 44px);
+      color: #d8b4fe;
+      margin-bottom: 8px;
+    }
+
     .hero p {
-      max-width: 600px;
-      margin: auto;
       color: #c8c1d0;
     }
 
+    .private-note {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 12px;
+      border: 1px solid #6d28d9;
+      border-radius: 20px;
+      color: #e9d5ff;
+      font-size: 13px;
+    }
+
     .catalog {
-      max-width: 1050px;
+      max-width: 1100px;
       margin: auto;
       padding: 25px 18px 50px;
     }
@@ -73,19 +81,19 @@
     .catalog h2 {
       text-align: center;
       color: #d8b4fe;
-      font-size: 30px;
+      font-size: 29px;
       margin-bottom: 8px;
     }
 
     .intro {
       text-align: center;
       color: #bdb4c8;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .caps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
       gap: 22px;
     }
 
@@ -96,12 +104,6 @@
       padding: 16px;
       text-align: center;
       box-shadow: 0 8px 25px #00000055;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .cap-card:hover {
-      transform: translateY(-4px);
-      border-color: #c084fc;
     }
 
     .cap-photo {
@@ -115,20 +117,15 @@
 
     .cap-card h3 {
       color: #d8b4fe;
-      font-size: 22px;
-      margin: 16px 0 10px;
-    }
-
-    .cap-card p {
-      color: #d4cedc;
-      margin: 7px 0;
+      font-size: 23px;
+      margin: 15px 0 8px;
     }
 
     .cap-price {
       font-size: 23px;
       font-weight: bold;
-      color: #c084fc !important;
-      margin-top: 12px !important;
+      color: #c084fc;
+      margin-top: 10px;
     }
 
     .stock {
@@ -137,22 +134,83 @@
       color: #e9d5ff;
       border-radius: 20px;
       padding: 5px 12px;
-      margin-top: 8px;
-      font-size: 14px;
+      margin-top: 9px;
+      font-size: 13px;
+    }
+
+    .color-toggle {
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px;
+      border: 1px solid #a855f7;
+      border-radius: 10px;
+      background: #6d28d9;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .color-toggle:hover {
+      background: #7e22ce;
+    }
+
+    .colors-list {
+      margin-top: 14px;
+      padding: 13px;
+      border-radius: 12px;
+      background: #211a2b;
+      text-align: left;
+    }
+
+    .colors-list[hidden] {
+      display: none;
+    }
+
+    .variant-count {
+      color: #c4b5fd;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .color-option {
+      display: block;
+      width: 100%;
+      margin: 7px 0;
+      padding: 10px;
+      border: 1px solid #593080;
+      border-radius: 9px;
+      background: #15111c;
+      color: #f3e8ff;
+      text-align: left;
+      cursor: pointer;
+      overflow-wrap: anywhere;
+    }
+
+    .color-option:hover,
+    .color-option.selected {
+      background: #51218a;
+      border-color: #c084fc;
+    }
+
+    .selected-color {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #d8b4fe;
+      overflow-wrap: anywhere;
     }
 
     .notice {
       max-width: 750px;
-      margin: 0 auto 45px;
+      margin: 0 auto 40px;
       padding: 20px;
       text-align: center;
-      color: #c8c1d0;
-      border-top: 1px solid #382448;
+      color: #a99bb8;
+      font-size: 13px;
     }
 
     footer {
       text-align: center;
-      padding: 25px 15px;
+      padding: 24px 15px;
       border-top: 1px solid #382448;
       color: #a99bb8;
       font-size: 13px;
@@ -166,12 +224,6 @@
       .caps-grid {
         grid-template-columns: 1fr;
       }
-
-      .cap-card {
-        max-width: 380px;
-        width: 100%;
-        margin: auto;
-      }
     }
   </style>
 </head>
@@ -180,83 +232,210 @@
 
   <header>
     <div class="brand">CLOUD HOUSE</div>
-    <p>Estilo que habla por ti.</p>
+    <p>Inventario y control de productos</p>
   </header>
 
   <main>
     <section class="hero">
       <img src="logo.jpeg"
-           alt="Logo de Cloud House"
+           alt="Logo Cloud House"
            onerror="this.style.display='none'">
 
-      <h1>Tu estilo, tu esencia.</h1>
-      <p>
-        Descubre nuestra colección de gorras y encuentra
-        el modelo que va contigo.
-      </p>
+      <h1>Mi inventario</h1>
+      <p>Consulta los modelos y sus variantes disponibles.</p>
+      <span class="private-note">Boceto personal</span>
     </section>
 
     <section class="catalog">
-      <h2>Nuestra colección</h2>
+      <h2>Productos</h2>
       <p class="intro">
-        Explora nuestros modelos disponibles.
+        Pulsa cada modelo para ver sus variantes.
       </p>
 
       <div class="caps-grid">
 
-        <!-- GORRA LOST ANGEL -->
+        <!-- LOST ANGEL -->
         <article class="cap-card">
           <img class="cap-photo"
                src="lost-angel.jpeg"
-               alt="Gorra modelo Lost Angel"
+               alt="Modelo Lost Angel"
                onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=LOST+ANGEL'">
 
           <h3>LOST ANGEL</h3>
-          <p>Color: <strong>Por definir</strong></p>
+          <p>Precio por unidad</p>
           <p class="cap-price">$60.000 COP</p>
-          <span class="stock">Existencias: 7</span>
+          <span class="stock">Existencias: por confirmar</span>
+
+          <button class="color-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  onclick="toggleVariants('lost-colors', this)">
+            Ver variantes (7) +
+          </button>
+
+          <div id="lost-colors" class="colors-list" hidden>
+            <p class="variant-count">7 variantes registradas</p>
+
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'BERRY BLISS')">
+              BERRY BLISS
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'JUICY PEACH ICE')">
+              JUICY PEACH ICE
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'MEXICO MANGO')">
+              MEXICO MANGO
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'BLUE RAZZ ICE')">
+              BLUE RAZZ ICE
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'BLUEBERRY WATERMELON')">
+              BLUEBERRY WATERMELON
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'STRAWBERRY ICE')">
+              STRAWBERRY ICE
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'TROPICAL BOOM')">
+              TROPICAL BOOM
+            </button>
+          </div>
+
+          <p class="selected-color">Variante seleccionada: ninguna</p>
         </article>
 
-        <!-- GORRA IJOY -->
+        <!-- IJOY -->
         <article class="cap-card">
           <img class="cap-photo"
                src="ijoy.jpeg"
-               alt="Gorra modelo IJOY"
+               alt="Modelo IJOY"
                onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=IJOY'">
 
           <h3>IJOY</h3>
-          <p>Color: <strong>Por definir</strong></p>
+          <p>Precio por unidad</p>
           <p class="cap-price">$30.000 COP</p>
-          <span class="stock">Existencias: 2</span>
+          <span class="stock">Existencias: por confirmar</span>
+
+          <button class="color-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  onclick="toggleVariants('ijoy-colors', this)">
+            Ver variantes (3) +
+          </button>
+
+          <div id="ijoy-colors" class="colors-list" hidden>
+            <p class="variant-count">3 variantes registradas</p>
+
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'APPLE PEACH PEAR')">
+              APPLE PEACH PEAR
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'PEACH MANGO')">
+              PEACH MANGO
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'WATERMELON')">
+              WATERMELON
+            </button>
+          </div>
+
+          <p class="selected-color">Variante seleccionada: ninguna</p>
         </article>
 
-        <!-- GORRA NORTH -->
+        <!-- NORTH -->
         <article class="cap-card">
           <img class="cap-photo"
                src="north.jpeg"
-               alt="Gorra modelo North"
+               alt="Modelo NORTH"
                onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=NORTH'">
 
-         <h3>NORTH</h3>
-<p>Color: <strong>Por definir</strong></p>
-<p class="cap-price">$35.000 COP</p>
-<span class="stock">Existencias: 6 unidades</span>
-</article>
+          <h3>NORTH</h3>
+          <p>Precio por unidad</p>
+          <p class="cap-price">$35.000 COP</p>
+          <span class="stock">Existencias: 6 unidades</span>
+
+          <button class="color-toggle"
+                  type="button"
+                  aria-expanded="false"
+                  onclick="toggleVariants('north-colors', this)">
+            Ver variantes (5) +
+          </button>
+
+          <div id="north-colors" class="colors-list" hidden>
+            <p class="variant-count">5 variantes registradas</p>
+
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'WATERMELON FREEZE')">
+              WATERMELON FREEZE
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'DIRTY STRAWBERRY')">
+              DIRTY STRAWBERRY
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'RASPBERRY GRAPE')">
+              RASPBERRY GRAPE
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'RASPBERRY WATERMELON')">
+              RASPBERRY WATERMELON
+            </button>
+            <button class="color-option" type="button"
+                    onclick="selectVariant(this, 'BLUEBERRY LEMON')">
+              BLUEBERRY LEMON
+            </button>
+          </div>
+
+          <p class="selected-color">Variante seleccionada: ninguna</p>
+        </article>
 
       </div>
     </section>
 
     <section class="notice">
-      <p>
-        Los modelos, sabores, precios y existencias se actualizarán
-        según la disponibilidad.
-      </p>
+      Boceto personal. Las cantidades que no están confirmadas
+      deben actualizarse manualmente.
     </section>
   </main>
 
   <footer>
     © 2026 Cloud House. Todos los derechos reservados.
   </footer>
+
+  <script>
+    function toggleVariants(id, button) {
+      const panel = document.getElementById(id);
+      const opening = panel.hidden;
+
+      panel.hidden = !opening;
+      button.setAttribute("aria-expanded", String(opening));
+
+      const count = panel.querySelectorAll(".color-option").length;
+      button.textContent = opening
+        ? "Ocultar variantes −"
+        : "Ver variantes (" + count + ") +";
+    }
+
+    function selectVariant(button, variant) {
+      const panel = button.closest(".colors-list");
+      const card = button.closest(".cap-card");
+
+      panel.querySelectorAll(".color-option").forEach(option => {
+        option.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+
+      card.querySelector(".selected-color").textContent =
+        "Variante seleccionada: " + variant;
+    }
+  </script>
 
 </body>
 </html>
