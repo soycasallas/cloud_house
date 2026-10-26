@@ -126,9 +126,7 @@
       position: relative;
       overflow: hidden;
       animation: fadeUp .7s ease both;
-      transition:
-        transform .3s ease,
-        border-color .3s ease,
+      transition: transform .3s ease, border-color .3s ease,
         box-shadow .3s ease;
     }
 
@@ -148,12 +146,7 @@
       width: 45%;
       height: 250%;
       transform: rotate(25deg);
-      background: linear-gradient(
-        90deg,
-        transparent,
-        #ffffff0d,
-        transparent
-      );
+      background: linear-gradient(90deg, transparent, #ffffff0d, transparent);
       transition: left .7s ease;
       pointer-events: none;
     }
@@ -239,11 +232,8 @@
       background: #211a2b;
       text-align: left;
       opacity: 1;
-      transition:
-        grid-template-rows .35s ease,
-        opacity .3s ease,
-        margin .35s ease,
-        padding .35s ease;
+      transition: grid-template-rows .35s ease, opacity .3s ease,
+        margin .35s ease, padding .35s ease;
     }
 
     .colors-list[hidden] {
@@ -273,10 +263,7 @@
       text-align: left;
       cursor: pointer;
       overflow-wrap: anywhere;
-      transition:
-        background .2s,
-        border-color .2s,
-        transform .2s,
+      transition: background .2s, border-color .2s, transform .2s,
         padding-left .2s;
     }
 
@@ -297,6 +284,27 @@
       color: #d8b4fe;
       font-size: 12px;
       overflow-wrap: anywhere;
+    }
+
+    .buy-button {
+      display: none;
+      width: 100%;
+      margin-top: 14px;
+      padding: 13px;
+      border: 1px solid #25d366;
+      border-radius: 11px;
+      background: linear-gradient(100deg, #128c45, #25d366);
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, filter .2s;
+    }
+
+    .buy-button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px #25d36666;
+      filter: brightness(1.08);
     }
 
     .notice {
@@ -339,8 +347,12 @@
     }
 
     @keyframes floatLogo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
     }
 
     @media (max-width: 500px) {
@@ -363,7 +375,6 @@
 </head>
 
 <body>
-
   <header>
     <div class="brand">CLOUD HOUSE</div>
     <p>Inventario y control de productos</p>
@@ -397,8 +408,7 @@
           <p class="cap-price">$60.000 COP</p>
           <span class="stock">Existencias: 7</span>
 
-          <button class="color-toggle"
-                  type="button"
+          <button class="color-toggle" type="button"
                   aria-expanded="false"
                   onclick="toggleVariants('lost-colors', this)">
             ✨ Ver variantes (7) ＋
@@ -407,17 +417,18 @@
           <div id="lost-colors" class="colors-list" hidden>
             <div class="colors-inner">
               <p class="variant-count">7 variantes registradas</p>
-              <button class="color-option" onclick="selectVariant(this, 'BERRY BLISS')">🍇 BERRY BLISS</button>
-              <button class="color-option" onclick="selectVariant(this, 'JUICY PEACH ICE')">🍑 JUICY PEACH ICE</button>
-              <button class="color-option" onclick="selectVariant(this, 'MEXICO MANGO')">🥭 MEXICO MANGO</button>
-              <button class="color-option" onclick="selectVariant(this, 'BLUE RAZZ ICE')">🫐 BLUE RAZZ ICE</button>
-              <button class="color-option" onclick="selectVariant(this, 'BLUEBERRY WATERMELON')">🍉 BLUEBERRY WATERMELON</button>
-              <button class="color-option" onclick="selectVariant(this, 'STRAWBERRY ICE')">🍓 STRAWBERRY ICE</button>
-              <button class="color-option" onclick="selectVariant(this, 'TROPICAL BOOM')">🌴 TROPICAL BOOM</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'BERRY BLISS')">🍇 BERRY BLISS</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'JUICY PEACH ICE')">🍑 JUICY PEACH ICE</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'MEXICO MANGO')">🥭 MEXICO MANGO</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'BLUE RAZZ ICE')">🫐 BLUE RAZZ ICE</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'BLUEBERRY WATERMELON')">🍉 BLUEBERRY WATERMELON</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'STRAWBERRY ICE')">🍓 STRAWBERRY ICE</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'TROPICAL BOOM')">🌴 TROPICAL BOOM</button>
             </div>
           </div>
 
           <p class="selected-color">Variante seleccionada: ninguna</p>
+          <button class="buy-button" type="button" onclick="buyProduct(this)">Comprar por WhatsApp</button>
         </article>
 
         <!-- IJOY -->
@@ -431,8 +442,7 @@
           <p class="cap-price">$30.000 COP</p>
           <span class="stock">Existencias: 2</span>
 
-          <button class="color-toggle"
-                  type="button"
+          <button class="color-toggle" type="button"
                   aria-expanded="false"
                   onclick="toggleVariants('ijoy-colors', this)">
             ✨ Ver variantes (3) ＋
@@ -441,13 +451,14 @@
           <div id="ijoy-colors" class="colors-list" hidden>
             <div class="colors-inner">
               <p class="variant-count">3 variantes registradas</p>
-              <button class="color-option" onclick="selectVariant(this, 'APPLE PEACH PEAR')">🍏 APPLE PEACH PEAR</button>
-              <button class="color-option" onclick="selectVariant(this, 'PEACH MANGO')">🍑 PEACH MANGO</button>
-              <button class="color-option" onclick="selectVariant(this, 'WATERMELON')">🍉 WATERMELON</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'APPLE PEACH PEAR')">🍏 APPLE PEACH PEAR</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'PEACH MANGO')">🍑 PEACH MANGO</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'WATERMELON')">🍉 WATERMELON</button>
             </div>
           </div>
 
           <p class="selected-color">Variante seleccionada: ninguna</p>
+          <button class="buy-button" type="button" onclick="buyProduct(this)">Comprar por WhatsApp</button>
         </article>
 
         <!-- NORTH -->
@@ -461,8 +472,7 @@
           <p class="cap-price">$35.000 COP</p>
           <span class="stock">Existencias: 6 unidades</span>
 
-          <button class="color-toggle"
-                  type="button"
+          <button class="color-toggle" type="button"
                   aria-expanded="false"
                   onclick="toggleVariants('north-colors', this)">
             ✨ Ver variantes (5) ＋
@@ -471,15 +481,16 @@
           <div id="north-colors" class="colors-list" hidden>
             <div class="colors-inner">
               <p class="variant-count">5 variantes registradas</p>
-              <button class="color-option" onclick="selectVariant(this, 'WATERMELON FREEZE')">🍉 WATERMELON FREEZE</button>
-              <button class="color-option" onclick="selectVariant(this, 'DIRTY STRAWBERRY')">🍓 DIRTY STRAWBERRY</button>
-              <button class="color-option" onclick="selectVariant(this, 'RASPBERRY GRAPE')">🍇 RASPBERRY GRAPE</button>
-              <button class="color-option" onclick="selectVariant(this, 'RASPBERRY WATERMELON')">🍉 RASPBERRY WATERMELON</button>
-              <button class="color-option" onclick="selectVariant(this, 'BLUEBERRY LEMON')">🫐 BLUEBERRY LEMON</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'WATERMELON FREEZE')">🍉 WATERMELON FREEZE</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'DIRTY STRAWBERRY')">🍓 DIRTY STRAWBERRY</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'RASPBERRY GRAPE')">🍇 RASPBERRY GRAPE</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'RASPBERRY WATERMELON')">🍉 RASPBERRY WATERMELON</button>
+              <button type="button" class="color-option" onclick="selectVariant(this, 'BLUEBERRY LEMON')">🫐 BLUEBERRY LEMON</button>
             </div>
           </div>
 
           <p class="selected-color">Variante seleccionada: ninguna</p>
+          <button class="buy-button" type="button" onclick="buyProduct(this)">Comprar por WhatsApp</button>
         </article>
 
       </div>
@@ -528,6 +539,9 @@
       card.querySelector(".selected-color").textContent =
         "Variante seleccionada: " + variant;
 
+      const buyButton = card.querySelector(".buy-button");
+      buyButton.style.display = "block";
+
       card.querySelector(".selected-color").animate(
         [
           { opacity: 0.3, transform: "translateY(5px)" },
@@ -536,8 +550,24 @@
         { duration: 250, easing: "ease-out" }
       );
     }
-  </script>
 
+    function buyProduct(button) {
+      const card = button.closest(".cap-card");
+      const product = card.querySelector("h3").textContent.trim();
+      const price = card.querySelector(".cap-price").textContent.trim();
+      const selected = card.querySelector(".selected-color").textContent;
+      const flavor = selected.replace("Variante seleccionada: ", "").trim();
+
+      if (!flavor || flavor === "ninguna") {
+        alert("Primero selecciona un sabor.");
+        return;
+      }
+
+      const message = `Hola, quiero comprar ${product}. Sabor: ${flavor}. Precio: ${price}.`;
+      const url = `https://wa.me/573108423227?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+  </script>
 </body>
 </html>
-
