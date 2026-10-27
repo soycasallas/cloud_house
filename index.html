@@ -4,15 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09070d">
-  <title>Cloud House | Inventario</title>
+  <meta name="theme-color" content="#030204">
+  <meta name="description" content="Cloud House — Tu nube, tu estilo.">
+  <title>Cloud House | Tu nube, tu estilo</title>
 
   <style>
     :root {
-      --bg: #09070d;
-      --purple: #a855f7;
-      --light-purple: #e9d5ff;
-      --border: #6935a0;
+      --black: #030204;
+      --black-card: #0c0712;
+      --purple: #9333ea;
+      --purple-light: #c084fc;
+      --purple-dark: #4c1d95;
+      --white: #f5edff;
+      --muted: #c4b5d8;
     }
 
     * {
@@ -21,699 +25,954 @@
       padding: 0;
     }
 
-    body {
-      background:
-        radial-gradient(ellipse at 15% 5%, #35104d66, transparent 35%),
-        radial-gradient(ellipse at 90% 45%, #3b076455, transparent 35%),
-        var(--bg);
-      color: white;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-      min-height: 100vh;
-      overflow-x: hidden;
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
     }
 
-    body::before,
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      isolation: isolate;
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* MARCA DE AGUA */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image: url("logo.jpeg");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: min(78vw, 650px);
+      opacity: 0.09;
+      filter: brightness(0.9);
+    }
+
+    /* LUCES MORADAS ANIMADAS */
     body::after {
       content: "";
       position: fixed;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      filter: blur(75px);
-      opacity: .18;
-      pointer-events: none;
+      inset: -20%;
       z-index: -1;
-      animation: glowDrift 12s ease-in-out infinite alternate;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse at 15% 20%,
+          rgba(126, 34, 206, 0.19),
+          transparent 38%
+        ),
+        radial-gradient(
+          ellipse at 85% 75%,
+          rgba(147, 51, 234, 0.15),
+          transparent 40%
+        );
+      animation: ambientGlow 8s ease-in-out infinite alternate;
     }
 
-    body::before {
-      background: #a855f7;
-      top: 16%;
-      left: -120px;
+    @keyframes ambientGlow {
+      from {
+        opacity: 0.55;
+        transform: scale(1);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1.08);
+      }
     }
 
-    body::after {
-      background: #6d28d9;
-      right: -130px;
-      bottom: 8%;
-      animation-delay: -5s;
+    /* DESTELLOS DECORATIVOS */
+    .sparkle {
+      position: fixed;
+      z-index: -1;
+      color: var(--purple-light);
+      opacity: 0.4;
+      pointer-events: none;
+      animation: sparkleFloat 5s ease-in-out infinite;
     }
 
-    header {
-      position: relative;
-      overflow: hidden;
+    .sparkle-one {
+      top: 18%;
+      left: 5%;
+      font-size: 22px;
+    }
+
+    .sparkle-two {
+      top: 45%;
+      right: 6%;
+      font-size: 17px;
+      animation-delay: 1.5s;
+    }
+
+    .sparkle-three {
+      top: 78%;
+      left: 8%;
+      font-size: 19px;
+      animation-delay: 2.5s;
+    }
+
+    @keyframes sparkleFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.2;
+      }
+      50% {
+        transform: translateY(-18px) rotate(20deg);
+        opacity: 0.75;
+      }
+    }
+
+    /* ENCABEZADO */
+    .hero {
       text-align: center;
-      padding: 32px 16px;
-      background: linear-gradient(120deg, #100b19, #29113d 48%, #0b0810);
-      border-bottom: 1px solid var(--border);
-      animation: fadeDown .8s ease both;
+      padding: 48px 18px 35px;
+      position: relative;
     }
 
-    header::after {
-      content: "✦ CLOUD HOUSE ✦ CLOUD HOUSE ✦";
+    .logo-frame {
+      width: 125px;
+      height: 125px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(192, 132, 252, 0.7);
+      box-shadow:
+        0 0 20px rgba(147, 51, 234, 0.35),
+        0 0 45px rgba(147, 51, 234, 0.12);
+      overflow: hidden;
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+
+    .logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      margin: 20px auto -18px;
-      color: #d8b4fe;
-      font-size: 10px;
-      letter-spacing: 4px;
-      opacity: .45;
-      white-space: nowrap;
-      animation: shimmer 4s ease-in-out infinite;
     }
 
-    .brand {
-      color: var(--light-purple);
-      font-size: clamp(27px, 5vw, 38px);
+    @keyframes logoPulse {
+      0%, 100% {
+        box-shadow:
+          0 0 15px rgba(147, 51, 234, 0.3),
+          0 0 30px rgba(147, 51, 234, 0.1);
+      }
+      50% {
+        box-shadow:
+          0 0 24px rgba(192, 132, 252, 0.6),
+          0 0 55px rgba(147, 51, 234, 0.22);
+      }
+    }
+
+    .brand-name {
+      font-size: clamp(2rem, 7vw, 3.5rem);
       font-weight: 900;
       letter-spacing: 5px;
-      animation: neonPulse 3s ease-in-out infinite;
-    }
-
-    header p {
-      color: #d4c8e2;
-      margin-top: 5px;
-    }
-
-    .cloud-ticker {
-      overflow: hidden;
-      margin: 0 auto 18px;
-      padding: 10px 0;
-      border-top: 1px solid #a855f733;
-      border-bottom: 1px solid #a855f733;
-      background: #a855f70b;
-      color: #d8b4fe;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-align: center;
-    }
-
-    .cloud-ticker span {
-      display: inline-block;
-      animation: tickerGlow 3s ease-in-out infinite;
-    }
-
-    .hero {
-      position: relative;
-      text-align: center;
-      padding: 42px 20px 30px;
-      animation: fadeUp .9s ease both;
-    }
-
-    .hero img {
-      width: 135px;
-      height: 135px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 20px #a855f766);
-      animation: floatLogo 4s ease-in-out infinite;
-    }
-
-    .hero::before {
-      content: "✧";
-      position: absolute;
-      top: 34px;
-      left: calc(50% - 105px);
       color: #e9d5ff;
-      font-size: 25px;
-      animation: sparkle 2.2s ease-in-out infinite;
+      text-shadow:
+        0 0 8px rgba(168, 85, 247, 0.9),
+        0 0 25px rgba(147, 51, 234, 0.5);
+      animation: titleGlow 4s ease-in-out infinite alternate;
     }
 
-    .hero::after {
-      content: "✦";
-      position: absolute;
-      top: 90px;
-      right: calc(50% - 115px);
-      color: #c084fc;
-      font-size: 19px;
-      animation: sparkle 2.8s ease-in-out infinite reverse;
+    @keyframes titleGlow {
+      from {
+        text-shadow: 0 0 8px rgba(168, 85, 247, 0.45);
+      }
+      to {
+        text-shadow:
+          0 0 12px rgba(192, 132, 252, 0.9),
+          0 0 30px rgba(147, 51, 234, 0.65);
+      }
     }
 
-    .hero h1 {
-      color: var(--light-purple);
-      font-size: clamp(30px, 6vw, 48px);
-      margin: 10px 0;
-      text-shadow: 0 0 25px #a855f744;
+    .tagline {
+      margin-top: 12px;
+      color: #d8b4fe;
+      font-size: 1rem;
+      letter-spacing: 2px;
     }
 
-    .hero p {
-      color: #c8c1d0;
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 28px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(168, 85, 247, 0.28);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.28);
+      background: rgba(20, 8, 32, 0.55);
+    }
+
+    .marquee span {
+      display: inline-block;
+      color: #d8b4fe;
+      font-size: 0.83rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      animation: marqueeMove 22s linear infinite;
+    }
+
+    @keyframes marqueeMove {
+      from {
+        transform: translateX(100vw);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* PRESENTACIÓN */
+    .intro-hero {
+      text-align: center;
+      padding: 38px 20px 34px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--purple-light);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.75rem;
+      margin-bottom: 15px;
+    }
+
+    .intro-hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      margin-bottom: 13px;
+      color: #f3e8ff;
+      text-shadow: 0 0 18px rgba(147, 51, 234, 0.35);
+    }
+
+    .intro-hero p {
+      color: var(--muted);
+      line-height: 1.7;
     }
 
     .private-note {
       display: inline-block;
-      margin-top: 14px;
-      padding: 5px 13px;
-      border: 1px solid var(--border);
+      margin-top: 20px;
+      padding: 8px 15px;
+      color: #d8b4fe;
+      border: 1px solid rgba(168, 85, 247, 0.4);
       border-radius: 30px;
-      color: var(--light-purple);
-      background: #6d28d922;
-      font-size: 12px;
-      animation: borderGlow 3s ease-in-out infinite;
+      background: rgba(76, 29, 149, 0.12);
+      font-size: 0.8rem;
     }
 
+    /* CATÁLOGO */
     .catalog {
-      max-width: 1100px;
+      width: min(1150px, 100%);
+      padding: 20px 20px 55px;
       margin: auto;
-      padding: 25px 18px 55px;
     }
 
-    .catalog h2 {
+    .section-title {
       text-align: center;
-      color: var(--light-purple);
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
-
-    .catalog h2::after {
-      content: "";
-      display: block;
-      width: 76px;
-      height: 3px;
-      margin: 8px auto 0;
-      border-radius: 99px;
-      background: linear-gradient(90deg, transparent, #c084fc, transparent);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      margin-bottom: 10px;
+      color: #e9d5ff;
+      text-shadow: 0 0 12px rgba(147, 51, 234, 0.35);
     }
 
     .intro {
       text-align: center;
-      color: #bdb4c8;
+      color: var(--muted);
       margin-bottom: 30px;
+      line-height: 1.6;
     }
 
     .caps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 24px;
-      align-items: start;
     }
 
+    /* TARJETAS */
     .cap-card {
       position: relative;
       overflow: hidden;
-      padding: 17px;
-      text-align: center;
-      background: linear-gradient(145deg, #1d1528, #100d15);
-      border: 1px solid #593080;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px #00000055;
-      backdrop-filter: blur(8px);
-      animation: fadeUp .7s ease both;
-      transition: transform .3s ease, border-color .3s ease,
-                  box-shadow .3s ease;
+      padding: 18px;
+      border-radius: 19px;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      background: linear-gradient(
+        145deg,
+        rgba(18, 10, 27, 0.98),
+        rgba(5, 4, 8, 0.98)
+      );
+      box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.35),
+        0 0 15px rgba(126, 34, 206, 0.08);
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+      animation: cardAppear 0.8s ease both;
     }
 
-    .cap-card:nth-child(2) { animation-delay: .12s; }
-    .cap-card:nth-child(3) { animation-delay: .24s; }
+    .cap-card:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .cap-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .cap-card::before {
-      content: "";
+      content: "CLOUD HOUSE ✦";
       position: absolute;
-      top: -100%;
-      left: -70%;
-      width: 45%;
-      height: 250%;
-      transform: rotate(25deg);
-      background: linear-gradient(90deg, transparent, #ffffff0d, transparent);
-      transition: left .7s ease;
-      pointer-events: none;
-    }
-
-    .cap-card:hover::before { left: 140%; }
-
-    .cap-card::after {
-      content: "CLOUD HOUSE";
-      position: absolute;
-      top: 13px;
-      right: -31px;
-      transform: rotate(35deg);
-      padding: 4px 32px;
-      background: #6d28d9cc;
-      border-top: 1px solid #c084fc88;
-      border-bottom: 1px solid #c084fc88;
-      color: #f3e8ff;
-      font-size: 8px;
-      font-weight: 800;
+      top: 17px;
+      left: -35px;
+      z-index: 2;
+      transform: rotate(-45deg);
+      width: 135px;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 0.56rem;
+      font-weight: bold;
       letter-spacing: 1px;
-      pointer-events: none;
-      opacity: .85;
+      color: white;
+      background: linear-gradient(90deg, #581c87, #a855f7);
+      box-shadow: 0 0 12px rgba(147, 51, 234, 0.25);
     }
 
     .cap-card:hover {
       transform: translateY(-7px);
-      border-color: var(--purple);
-      box-shadow: 0 12px 35px #a855f733;
+      border-color: var(--purple-light);
+      box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.4),
+        0 0 24px rgba(147, 51, 234, 0.23);
     }
 
     .cap-photo {
-      display: block;
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: contain;
-      background: #211a2b;
-      border-radius: 14px;
-      transition: transform .35s ease;
+      display: block;
+      border-radius: 12px;
+      background: #08050b;
+      margin-bottom: 20px;
+      transition: transform 0.45s ease;
     }
 
-    .cap-card:hover .cap-photo { transform: scale(1.035); }
+    .cap-card:hover .cap-photo {
+      transform: scale(1.025);
+    }
 
     .cap-card h3 {
-      color: var(--light-purple);
-      font-size: 24px;
-      margin: 15px 0 5px;
-      letter-spacing: 1px;
+      font-size: 1.35rem;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      color: #f3e8ff;
     }
 
     .cap-price {
-      color: #d8b4fe;
-      font-size: 25px;
+      color: var(--purple-light);
       font-weight: 800;
-      margin-top: 8px;
-      text-shadow: 0 0 16px #a855f755;
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 12px rgba(147, 51, 234, 0.2);
     }
 
     .stock {
       display: inline-block;
-      background: #351d4d;
-      color: #f3e8ff;
-      border: 1px solid #a855f744;
-      border-radius: 30px;
-      padding: 5px 12px;
-      margin-top: 9px;
-      font-size: 12px;
+      font-size: 0.78rem;
+      color: #d8b4fe;
+      background: rgba(126, 34, 206, 0.13);
+      border: 1px solid rgba(168, 85, 247, 0.22);
+      padding: 6px 10px;
+      border-radius: 20px;
+      margin-bottom: 17px;
     }
 
-    .color-toggle {
+    /* BOTONES */
+    button {
+      font: inherit;
+    }
+
+    .color-toggle,
+    .buy-button {
       width: 100%;
-      margin-top: 17px;
-      padding: 13px;
-      border: 1px solid #a855f7;
-      border-radius: 11px;
-      background: linear-gradient(100deg, #6d28d9, #9333ea);
+      border: 1px solid rgba(216, 180, 254, 0.5);
+      border-radius: 10px;
+      padding: 12px 14px;
       color: white;
-      font-size: 14px;
+      font-size: 0.9rem;
       font-weight: bold;
       cursor: pointer;
-      transition: transform .2s, box-shadow .2s, filter .2s;
+      background: linear-gradient(135deg, #581c87, #9333ea);
+      box-shadow: 0 0 12px rgba(147, 51, 234, 0.15);
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        filter 0.22s ease;
     }
 
-    .color-toggle:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 20px #a855f766;
-      filter: brightness(1.15);
+    .color-toggle:hover,
+    .buy-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.13);
+      box-shadow: 0 0 19px rgba(168, 85, 247, 0.4);
     }
 
-    .color-toggle:active { transform: scale(.97); }
+    .color-toggle:active,
+    .buy-button:active {
+      transform: scale(0.98);
+    }
 
     .colors-list {
-      margin-top: 0;
-      padding: 0 12px;
+      margin-top: 12px;
+      border: 1px solid rgba(168, 85, 247, 0.24);
       border-radius: 12px;
-      background: #211a2b;
-      text-align: left;
+      background: rgba(8, 4, 13, 0.96);
+      overflow: hidden;
     }
 
-    .colors-list[hidden] { display: none; }
-    .colors-inner { min-height: 0; overflow: hidden; }
+    .colors-list[hidden] {
+      display: none;
+    }
+
+    .colors-inner {
+      padding: 12px;
+      animation: variantsAppear 0.25s ease;
+    }
+
+    @keyframes variantsAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .variant-count {
-      color: #c4b5fd;
-      font-size: 12px;
-      padding: 12px 0 7px;
+      font-size: 0.77rem;
+      color: var(--muted);
+      margin-bottom: 10px;
     }
 
     .color-option {
       display: block;
       width: 100%;
-      margin: 7px 0;
-      padding: 11px;
-      border: 1px solid #4c2b66;
-      border-radius: 9px;
-      background: #15111c;
-      color: #f3e8ff;
       text-align: left;
+      padding: 11px 10px;
+      margin-bottom: 7px;
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: 8px;
+      color: #f3e8ff;
+      background: #100a18;
+      font-size: 0.8rem;
       cursor: pointer;
-      overflow-wrap: anywhere;
-      transition: background .2s, border-color .2s, transform .2s;
+      transition: all 0.2s ease;
     }
 
-    .color-option:hover {
-      background: #38204b;
-      border-color: var(--purple);
-      transform: translateX(3px);
+    .color-option:last-child {
+      margin-bottom: 0;
     }
 
+    .color-option:hover,
     .color-option.selected {
-      background: #542184;
-      border-color: #d8b4fe;
-      box-shadow: inset 3px 0 #d8b4fe;
+      background: #35104f;
+      border-color: var(--purple-light);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.18);
     }
 
     .selected-color {
-      margin-top: 12px;
-      color: #d8b4fe;
-      font-size: 12px;
-      overflow-wrap: anywhere;
+      min-height: 35px;
+      padding: 13px 0 8px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .selected-color strong {
+      color: var(--purple-light);
     }
 
     .buy-button {
-      display: none;
-      width: 100%;
-      margin-top: 14px;
-      padding: 13px;
-      border: 1px solid #25d366;
-      border-radius: 11px;
-      background: linear-gradient(100deg, #128c45, #25d366);
-      color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform .2s, box-shadow .2s, filter .2s;
+      margin-top: 8px;
+      background: linear-gradient(135deg, #6d28d9, #a855f7);
     }
 
-    .buy-button:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 20px #25d36666;
-      filter: brightness(1.08);
+    .buy-button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      filter: grayscale(0.4);
+      box-shadow: none;
+      transform: none;
     }
 
+    /* AVISO FINAL */
     .notice {
-      max-width: 750px;
-      margin: 0 auto 40px;
-      padding: 20px;
+      margin: 0 20px 45px;
+      padding: 23px 18px;
       text-align: center;
-      color: #a99bb8;
-      font-size: 12px;
+      color: #e9d5ff;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      border-top: 1px solid rgba(168, 85, 247, 0.35);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.35);
+      background: linear-gradient(
+        90deg,
+        rgba(76, 29, 149, 0.08),
+        rgba(168, 85, 247, 0.13),
+        rgba(76, 29, 149, 0.08)
+      );
     }
 
-    footer {
-      text-align: center;
-      padding: 25px 15px;
-      border-top: 1px solid #382448;
-      color: #a99bb8;
-      font-size: 13px;
-    }
-
-    footer::before {
-      content: "✦ ✧ ✦";
+    .notice span {
       display: block;
-      margin-bottom: 8px;
-      color: #a855f7;
-      letter-spacing: 8px;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.82rem;
     }
 
-    .floating-wa {
+    /* PIE DE PÁGINA */
+    footer {
+      padding: 28px 20px 100px;
+      text-align: center;
+      color: #9b8baa;
+      font-size: 0.78rem;
+      border-top: 1px solid rgba(168, 85, 247, 0.18);
+      line-height: 1.8;
+    }
+
+    footer strong {
+      color: #d8b4fe;
+    }
+
+    /* BOTÓN FLOTANTE WHATSAPP */
+    .whatsapp-float {
       position: fixed;
       right: 20px;
       bottom: 20px;
-      z-index: 100;
+      z-index: 20;
       display: flex;
       align-items: center;
       gap: 9px;
-      padding: 13px 17px;
-      border: 1px solid #86efac;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #128c45, #25d366);
-      color: white;
-      font-size: 13px;
-      font-weight: 800;
+      padding: 13px 18px;
+      border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 8px 28px #25d36655;
-      animation: floatLogo 3.5s ease-in-out infinite;
-      transition: transform .2s, box-shadow .2s;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #581c87, #9333ea);
+      border: 1px solid rgba(216, 180, 254, 0.55);
+      box-shadow: 0 0 22px rgba(147, 51, 234, 0.35);
+      animation: floatPulse 2.8s ease-in-out infinite;
+      transition: transform 0.2s ease;
     }
 
-    .floating-wa:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 10px 34px #25d36688;
+    .whatsapp-float:hover {
+      transform: translateY(-3px);
     }
 
-    .wa-icon { font-size: 20px; line-height: 1; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes floatPulse {
+      0%, 100% {
+        box-shadow: 0 0 12px rgba(147, 51, 234, 0.24);
+      }
+      50% {
+        box-shadow:
+          0 0 24px rgba(168, 85, 247, 0.48),
+          0 0 35px rgba(147, 51, 234, 0.15);
+      }
     }
 
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-15px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* CELULARES Y TABLETS */
+    @media (max-width: 850px) {
+      .caps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .catalog {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
     }
 
-    @keyframes floatLogo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
-    }
+    @media (max-width: 560px) {
+      body::before {
+        background-size: 90vw;
+        opacity: 0.065;
+      }
 
-    @keyframes glowDrift {
-      from { transform: translate3d(0, 0, 0) scale(.9); }
-      to { transform: translate3d(35px, -25px, 0) scale(1.15); }
-    }
+      .hero {
+        padding-top: 35px;
+      }
 
-    @keyframes neonPulse {
-      0%, 100% { text-shadow: 0 0 14px #a855f766; }
-      50% { text-shadow: 0 0 27px #c084fcbb, 0 0 42px #7e22ce55; }
-    }
+      .logo-frame {
+        width: 105px;
+        height: 105px;
+      }
 
-    @keyframes sparkle {
-      0%, 100% { opacity: .35; transform: scale(.8) rotate(0deg); }
-      50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
-    }
+      .brand-name {
+        letter-spacing: 3px;
+      }
 
-    @keyframes borderGlow {
-      0%, 100% { box-shadow: 0 0 10px #a855f711; }
-      50% { box-shadow: 0 0 20px #a855f744; }
-    }
+      .tagline {
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+      }
 
-    @keyframes shimmer {
-      0%, 100% { opacity: .3; }
-      50% { opacity: .7; }
-    }
+      .caps-grid {
+        grid-template-columns: 1fr;
+        max-width: 390px;
+        margin: auto;
+      }
 
-    @keyframes tickerGlow {
-      0%, 100% { opacity: .65; }
-      50% { opacity: 1; }
-    }
+      .cap-card {
+        padding: 17px;
+      }
 
-    @media (max-width: 500px) {
-      .caps-grid { grid-template-columns: 1fr; }
-      .cap-card { width: 100%; }
-      .floating-wa { right: 12px; bottom: 12px; padding: 12px 14px; }
-      .hero::before { left: calc(50% - 98px); }
-      .hero::after { right: calc(50% - 105px); }
+      .cap-card:hover {
+        transform: none;
+      }
+
+      .intro-hero {
+        padding-top: 30px;
+      }
+
+      .whatsapp-float {
+        right: 13px;
+        bottom: 13px;
+        padding: 12px 15px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="brand">CLOUD HOUSE</div>
-    <p>tu nube, tu estilo</p>
+
+  <span class="sparkle sparkle-one">✦</span>
+  <span class="sparkle sparkle-two">✧</span>
+  <span class="sparkle sparkle-three">✦</span>
+
+  <!-- ENCABEZADO DE LA MARCA -->
+  <header class="hero">
+
+    <div class="logo-frame">
+      <img
+        src="logo.jpeg"
+        alt="Logo de Cloud House"
+        onerror="this.style.display='none';"
+      >
+    </div>
+
+    <p class="brand-name">CLOUD HOUSE</p>
+    <p class="tagline">tu nube, tu estilo</p>
+
+    <div class="marquee">
+      <span>
+        ✦ ESTILO • CALIDAD • CLOUD HOUSE • ✦
+        ESTILO • CALIDAD • CLOUD HOUSE • ✦
+      </span>
+    </div>
+
   </header>
 
-  <div class="cloud-ticker">
-    <span>✦ ESTILO • CALIDAD • CLOUD HOUSE • ✦</span>
-  </div>
+  <!-- PRESENTACIÓN -->
+  <section class="intro-hero">
+    <p class="eyebrow">Bienvenido a Cloud House</p>
+    <h1>Productos disponibles</h1>
+    <p>Explora los modelos y consulta sus variantes.</p>
+    <span class="private-note">✦ Página oficial ✦</span>
+  </section>
 
+  <!-- CATÁLOGO -->
   <main>
-    <section class="hero">
-      <img src="logo.jpeg" alt="Logo Cloud House"
-           onerror="this.style.display='none'">
-
-      <h1>Productos disponibles</h1>
-      <p>Explora los modelos y consulta sus variantes.</p>
-      <span class="private-note">✦ Pagina oficial ✦</span>
-    </section>
-
     <section class="catalog">
-      <h2>Mis productos</h2>
-      <p class="intro">Pulsa un botón para desplegar las variantes.</p>
+
+      <h2 class="section-title">Mis productos</h2>
+      <p class="intro">
+        Pulsa un botón para desplegar las variantes.
+      </p>
 
       <div class="caps-grid">
 
         <!-- LOST ANGEL -->
-        <article class="cap-card">
-          <img class="cap-photo" src="angel.jpeg" alt="Lost Angel"
-               onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=LOST+ANGEL'">
+        <article class="cap-card" data-product="LOST ANGEL" data-price="60000">
+
+          <img
+            class="cap-photo"
+            src="angel.jpeg"
+            alt="Lost Angel"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x600/100719/d8b4fe?text=LOST+ANGEL';"
+          >
 
           <h3>LOST ANGEL</h3>
           <p class="cap-price">$60.000 COP</p>
           <span class="stock">Existencias: 7</span>
 
-          <button class="color-toggle" type="button"
-                  aria-expanded="false"
-                  onclick="toggleVariants('lost-colors', this)">
+          <button
+            class="color-toggle"
+            type="button"
+            aria-expanded="false"
+            onclick="toggleVariants('lost-colors', this)"
+          >
             ✨ Ver variantes (7) ＋
           </button>
 
           <div id="lost-colors" class="colors-list" hidden>
             <div class="colors-inner">
               <p class="variant-count">7 variantes registradas</p>
-              <button class="color-option" onclick="selectVariant(this, 'BERRY BLISS')">🍇 BERRY BLISS</button>
-              <button class="color-option" onclick="selectVariant(this, 'JUICY PEACH ICE')">🍑 JUICY PEACH ICE</button>
-              <button class="color-option" onclick="selectVariant(this, 'MEXICO MANGO')">🥭 MEXICO MANGO</button>
-              <button class="color-option" onclick="selectVariant(this, 'BLUE RAZZ ICE')">🫐 BLUE RAZZ ICE</button>
-              <button class="color-option" onclick="selectVariant(this, 'BLUEBERRY WATERMELON')">🍉 BLUEBERRY WATERMELON</button>
-              <button class="color-option" onclick="selectVariant(this, 'STRAWBERRY ICE')">🍓 STRAWBERRY ICE</button>
-              <button class="color-option" onclick="selectVariant(this, 'TROPICAL BOOM')">🌴 TROPICAL BOOM</button>
+
+              <button class="color-option" type="button" onclick="selectVariant(this, 'BERRY BLISS')">🍇 BERRY BLISS</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'JUICY PEACH ICE')">🍑 JUICY PEACH ICE</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'MEXICO MANGO')">🥭 MEXICO MANGO</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'BLUE RAZZ ICE')">🫐 BLUE RAZZ ICE</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'BLUEBERRY WATERMELON')">🍉 BLUEBERRY WATERMELON</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'STRAWBERRY ICE')">🍓 STRAWBERRY ICE</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'TROPICAL BOOM')">🌴 TROPICAL BOOM</button>
             </div>
           </div>
 
           <p class="selected-color">Variante seleccionada: ninguna</p>
-          <button class="buy-button" type="button" onclick="buyProduct(this)">Comprar por WhatsApp</button>
+
+          <button
+            class="buy-button"
+            type="button"
+            disabled
+            onclick="buyProduct(this)"
+          >
+            Selecciona una variante
+          </button>
+
         </article>
 
         <!-- IJOY -->
-        <article class="cap-card">
-          <img class="cap-photo" src="ijoy.jpeg" alt="IJOY"
-               onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=IJOY'">
+        <article class="cap-card" data-product="IJOY" data-price="30000">
+
+          <img
+            class="cap-photo"
+            src="ijoy.jpeg"
+            alt="IJOY"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x600/100719/d8b4fe?text=IJOY';"
+          >
 
           <h3>IJOY</h3>
           <p class="cap-price">$30.000 COP</p>
           <span class="stock">Existencias: 2</span>
 
-          <button class="color-toggle" type="button"
-                  aria-expanded="false"
-                  onclick="toggleVariants('ijoy-colors', this)">
+          <button
+            class="color-toggle"
+            type="button"
+            aria-expanded="false"
+            onclick="toggleVariants('ijoy-colors', this)"
+          >
             ✨ Ver variantes (3) ＋
           </button>
 
           <div id="ijoy-colors" class="colors-list" hidden>
             <div class="colors-inner">
               <p class="variant-count">3 variantes registradas</p>
-              <button class="color-option" onclick="selectVariant(this, 'APPLE PEACH PEAR')">🍏 APPLE PEACH PEAR</button>
-              <button class="color-option" onclick="selectVariant(this, 'PEACH MANGO')">🍑 PEACH MANGO</button>
-              <button class="color-option" onclick="selectVariant(this, 'WATERMELON')">🍉 WATERMELON</button>
+
+              <button class="color-option" type="button" onclick="selectVariant(this, 'APPLE PEACH PEAR')">🍏 APPLE PEACH PEAR</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'PEACH MANGO')">🍑 PEACH MANGO</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'WATERMELON')">🍉 WATERMELON</button>
             </div>
           </div>
 
           <p class="selected-color">Variante seleccionada: ninguna</p>
-          <button class="buy-button" type="button" onclick="buyProduct(this)">Comprar por WhatsApp</button>
+
+          <button
+            class="buy-button"
+            type="button"
+            disabled
+            onclick="buyProduct(this)"
+          >
+            Selecciona una variante
+          </button>
+
         </article>
 
         <!-- NORTH -->
-        <article class="cap-card">
-          <img class="cap-photo" src="north.jpeg" alt="NORTH"
-               onerror="this.onerror=null;this.src='https://placehold.co/600x600/211a2b/d8b4fe?text=NORTH'">
+        <article class="cap-card" data-product="NORTH" data-price="35000">
+
+          <img
+            class="cap-photo"
+            src="north.jpeg"
+            alt="NORTH"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x600/100719/d8b4fe?text=NORTH';"
+          >
 
           <h3>NORTH</h3>
           <p class="cap-price">$35.000 COP</p>
           <span class="stock">Existencias: 6 unidades</span>
 
-          <button class="color-toggle" type="button"
-                  aria-expanded="false"
-                  onclick="toggleVariants('north-colors', this)">
+          <button
+            class="color-toggle"
+            type="button"
+            aria-expanded="false"
+            onclick="toggleVariants('north-colors', this)"
+          >
             ✨ Ver variantes (5) ＋
           </button>
 
           <div id="north-colors" class="colors-list" hidden>
             <div class="colors-inner">
               <p class="variant-count">5 variantes registradas</p>
-              <button class="color-option" onclick="selectVariant(this, 'WATERMELON FREEZE')">🍉 WATERMELON FREEZE</button>
-              <button class="color-option" onclick="selectVariant(this, 'DIRTY STRAWBERRY')">🍓 DIRTY STRAWBERRY</button>
-              <button class="color-option" onclick="selectVariant(this, 'RASPBERRY GRAPE')">🍇 RASPBERRY GRAPE</button>
-              <button class="color-option" onclick="selectVariant(this, 'RASPBERRY WATERMELON')">🍉 RASPBERRY WATERMELON</button>
-              <button class="color-option" onclick="selectVariant(this, 'BLUEBERRY LEMON')">🫐 BLUEBERRY LEMON</button>
+
+              <button class="color-option" type="button" onclick="selectVariant(this, 'WATERMELON FREEZE')">🍉 WATERMELON FREEZE</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'DIRTY STRAWBERRY')">🍓 DIRTY STRAWBERRY</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'RASPBERRY GRAPE')">🍇 RASPBERRY GRAPE</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'RASPBERRY WATERMELON')">🍉 RASPBERRY WATERMELON</button>
+              <button class="color-option" type="button" onclick="selectVariant(this, 'BLUEBERRY LEMON')">🫐 BLUEBERRY LEMON</button>
             </div>
           </div>
 
           <p class="selected-color">Variante seleccionada: ninguna</p>
-          <button class="buy-button" type="button" onclick="buyProduct(this)">Comprar por WhatsApp</button>
+
+          <button
+            class="buy-button"
+            type="button"
+            disabled
+            onclick="buyProduct(this)"
+          >
+            Selecciona una variante
+          </button>
+
         </article>
 
       </div>
     </section>
-
-    <section class="notice">
-      llegaran mas modelos, no te lo pierdas
-    </section>
   </main>
 
+  <!-- AVISO -->
+  <section class="notice">
+    ✦ Llegarán más modelos, no te lo pierdas ✦
+    <span>Gracias por ser parte de Cloud House.</span>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
   <footer>
-    © 2026 Cloud House. Todos los derechos reservados.
+    © 2026 <strong>Cloud House</strong>. Todos los derechos reservados.
+    <br>
+    Tu nube, tu estilo 💜
   </footer>
 
-  <a class="floating-wa"
-     href="https://wa.me/573108423227?text=Hola%20Cloud%20House%2C%20quiero%20consultar%20el%20cat%C3%A1logo."
-     target="_blank" rel="noopener noreferrer"
-     aria-label="Consultar por WhatsApp">
-    <span class="wa-icon">☏</span>
-    <span>Hablar por WhatsApp</span>
+  <!-- CONTACTO FLOTANTE -->
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/573108423227"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Hablar por WhatsApp"
+  >
+    <span aria-hidden="true">☏</span>
+    Hablar por WhatsApp
   </a>
 
   <script>
+    // Número de WhatsApp con código de país, sin espacios ni símbolos.
+    const WHATSAPP_NUMBER = "573108423227";
+
+    // Mostrar u ocultar las variantes de cada producto.
     function toggleVariants(id, button) {
       const panel = document.getElementById(id);
+
+      if (!panel) return;
+
       const isOpening = panel.hidden;
 
-      if (isOpening) {
-        panel.hidden = false;
-        panel.style.animation = "fadeUp .35s ease both";
-      } else {
-        panel.hidden = true;
-        panel.style.animation = "";
-      }
-
+      panel.hidden = !isOpening;
       button.setAttribute("aria-expanded", String(isOpening));
 
       const count = panel.querySelectorAll(".color-option").length;
-      button.textContent = isOpening
-        ? "✦ Ocultar variantes −"
-        : "✨ Ver variantes (" + count + ") ＋";
+
+      button.innerHTML = isOpening
+        ? `✨ Ocultar variantes (${count}) −`
+        : `✨ Ver variantes (${count}) ＋`;
     }
 
+    // Guardar y mostrar la variante elegida.
     function selectVariant(button, variant) {
-      const panel = button.closest(".colors-list");
       const card = button.closest(".cap-card");
 
-      panel.querySelectorAll(".color-option").forEach(option => {
+      if (!card) return;
+
+      card.querySelectorAll(".color-option").forEach(option => {
         option.classList.remove("selected");
+        option.setAttribute("aria-pressed", "false");
       });
 
       button.classList.add("selected");
+      button.setAttribute("aria-pressed", "true");
 
-      card.querySelector(".selected-color").textContent =
-        "Variante seleccionada: " + variant;
-
+      const selectedText = card.querySelector(".selected-color");
       const buyButton = card.querySelector(".buy-button");
-      buyButton.style.display = "block";
 
-      card.querySelector(".selected-color").animate(
-        [
-          { opacity: 0.3, transform: "translateY(5px)" },
-          { opacity: 1, transform: "translateY(0)" }
-        ],
-        { duration: 250, easing: "ease-out" }
-      );
+      selectedText.innerHTML =
+        `Variante seleccionada: <strong>${variant}</strong>`;
+
+      buyButton.disabled = false;
+      buyButton.textContent = "☏ Comprar por WhatsApp";
+
+      // Guardar la selección en la tarjeta para preparar el pedido.
+      card.dataset.selectedVariant = variant;
     }
 
+    // Abrir WhatsApp con el producto, variante y precio.
     function buyProduct(button) {
       const card = button.closest(".cap-card");
-      const product = card.querySelector("h3").textContent.trim();
-      const price = card.querySelector(".cap-price").textContent.trim();
-      const selected = card.querySelector(".selected-color").textContent;
-      const flavor = selected.replace("Variante seleccionada: ", "").trim();
 
-      if (!flavor || flavor === "ninguna") {
-        alert("Primero selecciona un sabor.");
+      if (!card) return;
+
+      const product = card.dataset.product;
+      const price = Number(card.dataset.price);
+      const variant = card.dataset.selectedVariant;
+
+      if (!variant) {
+        alert("Primero selecciona una variante, bro.");
         return;
       }
 
+      const formattedPrice = price.toLocaleString("es-CO");
+
       const message =
-        `Hola, quiero comprar ${product}. Sabor: ${flavor}. Precio: ${price}.`;
+        `Hola, Cloud House. Quiero consultar la disponibilidad de este producto:\n\n` +
+        `Producto: ${product}\n` +
+        `Variante: ${variant}\n` +
+        `Precio publicado: $${formattedPrice} COP\n\n` +
+        `¿Está disponible?`;
 
       const url =
-        `https://wa.me/573108423227?text=${encodeURIComponent(message)}`;
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
       window.open(url, "_blank", "noopener,noreferrer");
     }
   </script>
+
 </body>
 </html>
